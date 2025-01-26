@@ -8,7 +8,7 @@ const NewsDetails = async ({
 }: {
   params: Promise<{ id: string }>
 }) => {
-    const id = (await params).id;
+    const id = (await params).id ?? "1";
     const news = newsItems.find((news) => news.id === id);
 
   return (
