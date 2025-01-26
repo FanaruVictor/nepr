@@ -1,6 +1,5 @@
 "use client";
 import { useState } from 'react';
-import axios from 'axios';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 export default function SparqlPage() {
