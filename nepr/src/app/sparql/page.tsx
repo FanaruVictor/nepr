@@ -12,21 +12,21 @@ export default function SparqlPage() {
     setError(null);
     setResults(null);
 
-    try {
-      // Replace with your SPARQL endpoint URL
-      const endpoint = 'https://dbpedia.org/sparql';
+    // try {
+    //   // Replace with your SPARQL endpoint URL
+    //   const endpoint = 'https://dbpedia.org/sparql';
 
-      const response = await axios.get(endpoint, {
-        params: {
-          query: query,
-          format: 'json', // You can change this to 'xml', 'csv', etc.
-        },
-      });
+    //   const response = await axios.get(endpoint, {
+    //     params: {
+    //       query: query,
+    //       format: 'json', // You can change this to 'xml', 'csv', etc.
+    //     },
+    //   });
 
-      setResults(response.data);
-    } catch (err) {
-      setError(err.message);
-    }
+    //   setResults(response.data);
+    // } catch (err: string) {
+    //   setError(err.message);
+    // }
   };
 
   return (
