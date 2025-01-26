@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { githubGist } from 'react-syntax-highlighter/dist/cjs/styles/prism'; // Lighter theme
 
 export default function SparqlPage() {
   const [query, setQuery] = useState('');
@@ -39,7 +38,6 @@ export default function SparqlPage() {
           {/* SyntaxHighlighter to show query */}
           <SyntaxHighlighter
             language="sparql"
-            style={githubGist} // Lighter syntax highlighting theme
             customStyle={{
               fontFamily: 'monospace',
               fontSize: '14px',
