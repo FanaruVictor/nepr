@@ -40,15 +40,6 @@ export default async function NewsDetails({
   };
 
   await fetchNews();
-
-  if (!newsItem) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-2xl text-gray-600">News Not Found</p>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-start px-4 ">
       {/* Floating Back Button */}
