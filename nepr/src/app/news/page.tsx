@@ -33,13 +33,7 @@ const NewsPage = () => {
         const data: NewsItem[] = await response.json(); // Typed response
         setNewsItems(data);
       } catch (error) {
-        if (error.name === "AbortError") {
-          console.error("Request timed out after 60 seconds");
-          setError("Request timed out. Please try again later.");
-        } else {
-          console.error("Failed to load news", error);
-          setError("Failed to load news. Please check your connection.");
-        }
+        console.log(error);
       } finally {
         clearTimeout(timeoutId);
         setLoading(false);

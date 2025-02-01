@@ -16,7 +16,7 @@ export default async function NewsDetails({
   params: Promise<{ id: string }>;
 }) {
   const id = (await params).id ?? "1";
-  let newsItem: NewsItem | null = null;
+  let newsItem: NewsItem ;
 
   const fetchNews = async () => {
     const controller = new AbortController();
