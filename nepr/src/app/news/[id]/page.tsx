@@ -1,46 +1,55 @@
 import Link from "next/link";
 import Carousel from "../../components/carousel";
 
-export default async function NewsDetails  ({
+interface NewsItem {
+  title: string;
+  author?: string;
+  date: string;
+  source: string;
+  content: string;
+  multimedia: string[]; // Array of strings representing image URLs
+}
+
+export default async function NewsDetails({
   params,
 }: {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string }>;
 }) {
-    const id = (await params).id ?? "1";
-    let newsItem = null;
-    
-        const fetchNews = async () => {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 sec timeout
+  const id = (await params).id ?? "1";
+  let newsItem: NewsItem | null = null;
 
-          try {
-            const response = await fetch(`https://flask-ontology-app.onrender.com/news/${id}`, {
-              signal: controller.signal,
-            });
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const data = await response.json();
-            newsItem = data;
-            console.log(newsItem);
-          } catch (error) {
-            console.error("Failed to load news", error);
-          } finally {
-            clearTimeout(timeoutId);
-          }
-        };
+  const fetchNews = async () => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 sec timeout
 
-      await fetchNews();
-
-    if (!newsItem) {
-            return (
-                <div className="min-h-screen flex items-center justify-center">
-                <p className="text-2xl text-gray-600">News Not Found</p>
-                </div>
-            );
+    try {
+      const response = await fetch(`https://flask-ontology-app.onrender.com/news/${id}`, {
+        signal: controller.signal,
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      newsItem = data;
+      console.log(newsItem);
+    } catch (error) {
+      console.error("Failed to load news", error);
+    } finally {
+      clearTimeout(timeoutId);
     }
-      return (
-      
+  };
+
+  await fetchNews();
+
+  if (!newsItem) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-2xl text-gray-600">News Not Found</p>
+      </div>
+    );
+  }
+
+  return (
     <div className="min-h-screen flex flex-col items-center justify-start px-4 ">
       {/* Floating Back Button */}
       <Link href="/news">
@@ -65,7 +74,6 @@ export default async function NewsDetails  ({
         </div>
       </Link>
 
-
       {/* News Content */}
       <div className="px-4 ">
         <h1 className="text-4xl font-bold text-blue-700 mt-8 text-left">{newsItem.title}</h1>
@@ -78,6 +86,5 @@ export default async function NewsDetails  ({
         <p className="text-lg text-gray-700 mt-4 text-justify">{newsItem.content}</p>
       </div>
     </div>
-
   );
-};
+}
