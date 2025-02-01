@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const NewsPage = () => {
   const [newsItems, setNewsItems] = useState([]);
@@ -80,9 +81,9 @@ const NewsPage = () => {
           <div className="h-56 bg-white shadow-md rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition relative group">
             {/* Image or fallback */}
             {news.multimedia && news.multimedia.length > 0 && news.multimedia[0] != "" ? (
-              <img
+              <Image
                 src={news.preview_img}
-                alt={news.title}
+                alt="image"
                 className="w-full h-3/4 object-cover transition-all duration-300 group-hover:h-1/2"
               />
             ) : (
