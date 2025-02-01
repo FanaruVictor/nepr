@@ -5,7 +5,7 @@ import Link from "next/link";
 const NewsPage = () => {
   const [newsItems, setNewsItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
   const [page, setPage] = useState(1); // Tracks current page
   // Fetch news based on the current page
   useEffect(() => {
@@ -24,7 +24,7 @@ const NewsPage = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        setNewsItems(data); // Assuming the response contains an 'items' field with the news
+        setNewsItems(data); 
       } catch (error) {
         if (error.name === "AbortError") {
           console.error("Request timed out after 60 seconds");
@@ -81,7 +81,7 @@ const NewsPage = () => {
             {/* Image or fallback */}
             {news.multimedia && news.multimedia.length > 0 && news.multimedia[0] != "" ? (
               <img
-                src={news.multimedia[0]}
+                src={news.preview_img}
                 alt={news.title}
                 className="w-full h-3/4 object-cover transition-all duration-300 group-hover:h-1/2"
               />
