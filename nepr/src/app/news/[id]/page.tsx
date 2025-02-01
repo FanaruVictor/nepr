@@ -24,11 +24,7 @@ export default async function NewsDetails  ({
             newsItem = data;
             console.log(newsItem);
           } catch (error) {
-            if (error.name === "AbortError") {
-              console.error("Request timed out after 60 seconds");
-            } else {
-              console.error("Failed to load news", error);
-            }
+            console.error("Failed to load news", error);
           } finally {
             clearTimeout(timeoutId);
           }
