@@ -16,7 +16,13 @@ export default async function NewsDetails({
   params: Promise<{ id: string }>;
 }) {
   const id = (await params).id ?? "1";
-  let newsItem: NewsItem ;
+  let newsItem: NewsItem = {
+    title: "",
+    date: "",
+    source: "",
+    content: "",
+    multimedia: [],
+  };
 
   const fetchNews = async () => {
     const controller = new AbortController();
@@ -40,6 +46,11 @@ export default async function NewsDetails({
   };
 
   await fetchNews();
+
+  if(newsItem.title === "") {
+    return <div className="min-h-screen flex items-center justify-center text-xl text-red-500">No news available</div>;
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-start px-4 ">
       {/* Floating Back Button */}
