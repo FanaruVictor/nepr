@@ -7,7 +7,10 @@ interface NewsItem {
   date: string;
   source: string;
   content: string;
+  description: string;
   multimedia: string[]; // Array of strings representing image URLs
+  url: string;
+  topics?: string[];
 }
 
 export default async function NewsDetails({
@@ -21,7 +24,10 @@ export default async function NewsDetails({
     date: "",
     source: "",
     content: "",
+    description: "",
     multimedia: [],
+    url: "",
+    topics: [],
   };
 
   const fetchNews = async () => {
@@ -84,9 +90,29 @@ export default async function NewsDetails({
         <h4 className="t-s text-gray-700 mt-4 text-justify">Published on: {newsItem.date}</h4>
         <p className="text-xs text-gray-700 mt-4 text-justify">Source: {newsItem.source}</p>
 
+        <p className="text-lg text-gray-700 mt-4 text-justify">
+          {newsItem.description}
+        </p>
+
         <Carousel multimedia={newsItem.multimedia}></Carousel>
         <p className="text-lg text-gray-700 mt-4 text-justify">{newsItem.content}</p>
-      </div>
+        <p className="text-lg text-gray-700 mt-4 text-justify">For more please access: </p>
+        <a className="txt-m text-blue-600 mt-4" href={newsItem.url} target="_blank">{newsItem.url}</a>
+        <div className="flex flex-wrap justify-start gap-2 mt-4">
+          {newsItem.topics && newsItem.topics.map((topic, index) => (
+            <span key={index} className="text-sm text-gray-700 mt-4 text-justify bg-gray-200 p-1 rounded-md">{topic}</span>
+          ))
+          }
+        </div>
+        <Link 
+  className="bg-blue-500 text-white rounded shadow-md hover:bg-blue-600 transition-colors mt-4 px-4 py-2 inline-block"
+  href={`https://flask-ontology-app.onrender.com/news_rdf/${id}`} 
+  target="_blank"
+>
+  Open as RDF
+</Link>
+
+        </div>
     </div>
   );
 }
