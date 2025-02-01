@@ -25,7 +25,7 @@ const Carousel = ({ multimedia }) => {
       <div className="relative">
         <div className="w-full h-[400px] flex justify-center items-center overflow-hidden rounded-lg">
           {currentImage && (
-            <img
+            <Image
               src={currentImage}
               alt="carousel"
               className="object-contain max-w-full max-h-full"
