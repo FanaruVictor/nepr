@@ -44,12 +44,6 @@ export default async function NewsDetails  ({
             );
     }
 
-    let index = 0;
-
-    const updateImage = () =>{
-      index++;
-    }
-
       return (
       
     <div className="min-h-screen flex flex-col items-center justify-start px-4 ">
