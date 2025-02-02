@@ -6,6 +6,7 @@ interface NewsItem {
   title: string;
   preview_img: string;
   multimedia: string[]; // Array of multimedia URLs, which can include images
+  news_id: string;
 }
 
 const NewsPage = () => {
@@ -77,7 +78,7 @@ const NewsPage = () => {
 
       {!loading && !error &&
         newsItems.map((news, index) => (
-          <Link key={index} href={`/news/${(page - 1) * 10 + index + 1}`} passHref className="w-full sm:w-1/3 lg:w-1/4">
+          <Link key={index} href={`/news/${news.news_id}`} passHref className="w-full sm:w-1/3 lg:w-1/4">
             <div className="h-56 bg-white shadow-md rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition relative group">
               {/* Image or fallback */}
               {news.multimedia && news.multimedia.length > 0 && news.multimedia[0] !== "" ? (

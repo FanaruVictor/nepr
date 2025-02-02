@@ -10,7 +10,7 @@ interface NewsItem {
   description: string;
   multimedia: string[]; // Array of strings representing image URLs
   url: string;
-  topics?: string[];
+  dbpedia_topics: { dbpedia_url: string, topic: string }[];
 }
 
 export default async function NewsDetails({
@@ -27,7 +27,7 @@ export default async function NewsDetails({
     description: "",
     multimedia: [],
     url: "",
-    topics: [],
+    dbpedia_topics: [],
   };
 
   const fetchNews = async () => {
@@ -99,18 +99,25 @@ export default async function NewsDetails({
         <p className="text-lg text-gray-700 mt-4 text-justify">For more please access: </p>
         <a className="txt-m text-blue-600 mt-4" href={newsItem.url} target="_blank">{newsItem.url}</a>
         <div className="flex flex-wrap justify-start gap-2 mt-4">
-          {newsItem.topics && newsItem.topics.map((topic, index) => (
-            <span key={index} className="text-sm text-gray-700 mt-4 text-justify bg-gray-200 p-1 rounded-md">{topic}</span>
+          {newsItem.dbpedia_topics && newsItem.dbpedia_topics.map((topic, index) => (
+            <Link href={`/topics/${topic.topic}`} key={index} className="text-sm text-gray-700 mt-4 text-justify bg-gray-200 p-1 rounded-md">{topic.topic}</Link>
           ))
           }
         </div>
         <Link 
-  className="bg-blue-500 text-white rounded shadow-md hover:bg-blue-600 transition-colors mt-4 px-4 py-2 inline-block"
-  href={`https://flask-ontology-app.onrender.com/news_rdf/${id}`} 
-  target="_blank"
->
-  Open as RDF
-</Link>
+          className="bg-blue-500 text-white rounded shadow-md hover:bg-blue-600 transition-colors mt-4 px-4 py-2 inline-block mr-4"
+          href={`https://flask-ontology-app.onrender.com/news_rdf_turtle/${id}`} 
+          target="_blank"
+        >
+          Open as turtle RDF
+        </Link>
+        <Link 
+          className="bg-blue-500 text-white rounded shadow-md hover:bg-blue-600 transition-colors mt-4 px-4 py-2 inline-block"
+          href={`https://flask-ontology-app.onrender.com/news_rdf_xml/${id}`} 
+          target="_blank"
+        >
+          Open as xml RDF
+        </Link>
 
         </div>
     </div>

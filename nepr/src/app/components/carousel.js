@@ -20,6 +20,10 @@ const Carousel = ({ multimedia }) => {
 
   const currentImage = multimedia[currentImageIndex];
 
+  if(multimedia && multimedia.length === 0) {
+    return;
+  }
+
   return (
     <div className="relative my-6 max-w-full h-auto rounded-lg mx-auto">
       <div className="relative">
