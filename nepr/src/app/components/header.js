@@ -86,11 +86,7 @@ const Header = () => {
                 SPARQL Query
               </button>
             </Link>
-            <Link href="/help">
-              <button className="text-blue-700 hover:text-blue-900 font-semibold transition-colors mb-2">
-                Help
-              </button>
-            </Link>
+            
             <UserButton />
           </div>
         )}
