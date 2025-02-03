@@ -109,14 +109,14 @@ export default async function NewsDetails({
           href={`https://flask-ontology-app.onrender.com/news_rdf_turtle/${id}`} 
           target="_blank"
         >
-          Open as turtle RDF
+          Open as Turtle
         </Link>
         <Link 
           className="bg-blue-500 text-white rounded shadow-md hover:bg-blue-600 transition-colors mt-4 px-4 py-2 inline-block"
           href={`https://flask-ontology-app.onrender.com/news_rdf_xml/${id}`} 
           target="_blank"
         >
-          Open as xml RDF
+          Open as XML RDF
         </Link>
 
         </div>
