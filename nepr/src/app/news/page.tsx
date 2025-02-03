@@ -18,8 +18,8 @@ const NewsPage = () => {
   // Fetch news based on the current page
   useEffect(() => {
     const fetchNews = async () => {
-      const skip = (page - 1) * 10;
-      const take = 10;
+      const skip = (page - 1) * 12;
+      const take = 12;
 
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 sec timeout
@@ -66,7 +66,7 @@ const NewsPage = () => {
           >
             {"<"}
           </button>
-          <span className="font-semibold">{` ${page} `}</span>
+          <span className="font-semibold text-gray-700">{` ${page} `}</span>
           <button
             onClick={goToNextPage}
             className="px-4 py-2 bg-blue-500 text-white rounded-md ml-4 disabled:opacity-50"
